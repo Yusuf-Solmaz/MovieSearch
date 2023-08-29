@@ -22,7 +22,7 @@ interface MovieAPI {
 
     @GET(".")
     suspend fun getMovieDetail(
-        @Query("i") searchString: String,
+        @Query("i") imdbId: String,
         @Query("apikey")  apiKey: String = API_KEY
     ) : MovieDetailDto
 
