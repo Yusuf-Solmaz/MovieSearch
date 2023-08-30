@@ -31,4 +31,6 @@ object AppModule {
     fun provideMovieRepo(api: MovieAPI): MovieRepository{
         return MovieRepositoryImp(api= api)
     }
+
+
 }

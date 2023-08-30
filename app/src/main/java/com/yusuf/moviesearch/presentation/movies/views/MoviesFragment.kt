@@ -8,16 +8,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.yusuf.moviesearch.R
 import com.yusuf.moviesearch.databinding.FragmentMoviesBinding
+import com.yusuf.moviesearch.domain.model.Movie
 import com.yusuf.moviesearch.presentation.movies.MoviesViewModel
 import com.yusuf.moviesearch.presentation.movies.adapter.MovieRecyclerViewAdapter
 import javax.inject.Inject
 
-class MoviesFragment @Inject constructor(
-    private val recyclerAdapter: MovieRecyclerViewAdapter
-) : Fragment() {
+class MoviesFragment : Fragment() {
 
     private var fragmentBinding: FragmentMoviesBinding? = null
     private lateinit var viewModel: MoviesViewModel
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +40,7 @@ class MoviesFragment @Inject constructor(
 
         val binding = FragmentMoviesBinding.bind(view)
         fragmentBinding = binding
+
 
 
     }
