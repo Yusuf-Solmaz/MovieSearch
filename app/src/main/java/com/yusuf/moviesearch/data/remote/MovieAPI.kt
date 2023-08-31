@@ -14,10 +14,10 @@ interface MovieAPI {
 
 
     //Base URL'den sonra direkt istek atılıyor, başka bir parametre yok.https://www.omdbapi.com/movies/?apikey=95a2bdea&s=inception gibi. O yüzden nokta konuldu.
-    @GET(".")
+    @GET("?")
     suspend fun getMovies(
-        @Query("s") searchString: String,
-        @Query("apikey")  apiKey: String = API_KEY
+        @Query("apikey")  apiKey: String = API_KEY,
+        @Query("s") searchString: String
     ) : MoviesDto
 
     @GET(".")
@@ -25,5 +25,7 @@ interface MovieAPI {
         @Query("i") imdbId: String,
         @Query("apikey")  apiKey: String = API_KEY
     ) : MovieDetailDto
+
+
 
 }
