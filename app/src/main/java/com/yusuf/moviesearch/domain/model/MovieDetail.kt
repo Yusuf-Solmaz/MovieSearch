@@ -1,6 +1,6 @@
 package com.yusuf.moviesearch.domain.model
 
-data class MovieDetail(
+data class MovieDetail (
     val Actors: String,
     val Awards: String,
     val Country: String,

@@ -10,8 +10,8 @@ class MovieRepositoryImp @Inject constructor(
     private val api: MovieAPI
 ) : MovieRepository {
 
-    override suspend fun getMovies(searchString: String): MoviesDto {
-        return api.getMovies(searchString = searchString)
+    override suspend fun getMovies(search: String): MoviesDto {
+        return api.getMovies(searchString = search)
     }
 
     override suspend fun getMoviesDetail(imdbId: String): MovieDetailDto {

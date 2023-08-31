@@ -1,8 +1,6 @@
 package com.yusuf.moviesearch.domain.use_case.get_movie_detail
 
 import com.yusuf.moviesearch.data.remote.dto.toMovieDetail
-import com.yusuf.moviesearch.data.remote.dto.toMovieList
-import com.yusuf.moviesearch.domain.model.Movie
 import com.yusuf.moviesearch.domain.model.MovieDetail
 import com.yusuf.moviesearch.domain.repository.MovieRepository
 import com.yusuf.moviesearch.util.Resource
@@ -18,8 +16,8 @@ class GetMovieDetailUseCase @Inject constructor(
     fun executeGetMovieDetail(imdb: String):  Flow<Resource<MovieDetail>> = flow {
         try {
             emit(Resource.Loading())
-            val movieDetail = repo.getMoviesDetail(imdbId = imdb)
-            emit(Resource.Success(movieDetail.toMovieDetail()))
+            val movieDetail = repo.getMoviesDetail(imdbId = imdb).toMovieDetail()
+            emit(Resource.Success(movieDetail))
 
         }
         catch (e: IOError){

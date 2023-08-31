@@ -9,6 +9,7 @@ import com.yusuf.moviesearch.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
@@ -28,12 +29,12 @@ class MoviesViewModel @Inject constructor(
     }
 
 
-    private fun getMovies(searchString: String){
+        fun getMovies(search: String){
         job?.cancel()
-        job= getMoviesUseCase.executeGetMovies(searchString = searchString).onEach {
+        job= getMoviesUseCase.executeGetMovies(search).onEach {
             when(it){
                 is Resource.Success -> {
-                    _state.value = MoviesState(movies = it.data ?: emptyList())
+                   // _state.value = MoviesState(movies = it.data ?: emptyList())
                 }
                 is Resource.Error ->{
                     _state.value = MoviesState(error = it.message ?: "Error!")
@@ -50,7 +51,7 @@ class MoviesViewModel @Inject constructor(
     fun onEvent(event: MoviesEvent){
         when(event){
             is MoviesEvent.Search ->{
-                getMovies(event.searchString)
+                getMovies(event.search)
             }
         }
     }
