@@ -9,5 +9,18 @@
         android:id="@+id/moviesFragment"
         android:name="com.yusuf.moviesearch.presentation.movies.views.MoviesFragment"
         android:label="fragment_movies"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies" >
+        <action
+            android:id="@+id/action_moviesFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.yusuf.moviesearch.presentation.movie_detail.views.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail" >
+        <argument
+            android:name="imdbId"
+            app:argType="string" />
+    </fragment>
 </navigation>

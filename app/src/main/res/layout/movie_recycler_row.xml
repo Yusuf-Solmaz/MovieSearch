@@ -23,6 +23,8 @@
 
 
         <TextView
+            android:textColor="@color/white"
+            android:paddingRight="10dp"
             android:textStyle="bold"
             android:textSize="23sp"
             android:layout_marginBottom="20dp"
