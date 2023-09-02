@@ -33,14 +33,12 @@ class MoviesFragment() : Fragment(R.layout.fragment_movies), MovieRecyclerViewAd
 
     private var fragmentBinding: FragmentMoviesBinding? = null
     private lateinit var viewModel: MoviesViewModel
-
     private var movieList= arrayListOf<Movie>()
 
+
     private var movieAdapter = MovieRecyclerViewAdapter(arrayListOf(),this)
-
-
     private var job: Job? = null
-    lateinit var repo: MovieRepository
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,40 +66,28 @@ class MoviesFragment() : Fragment(R.layout.fragment_movies), MovieRecyclerViewAd
         binding.moviesRecyclerView.layoutManager = layoutManager
 
 
-
-        repo = MovieRepositoryImp(api= provideMovieApi())
-
-        job = CoroutineScope(Dispatchers.IO).launch {
-            val newMovieList = (repo as MovieRepositoryImp).getMovies("Inception").toMovieList() as ArrayList<Movie>
-            requireActivity().runOnUiThread {
-                // movieList güncellendiğinde burada işlem yapabilirsiniz
-                movieList = newMovieList
-                movieAdapter?.updateData(newMovieList)
-                println(movieList)
-            }
-        }
-
-
         movieAdapter = MovieRecyclerViewAdapter(movieList ?: arrayListOf(),this@MoviesFragment)
         binding.moviesRecyclerView.adapter=movieAdapter
 
 
-        //viewModel.onEvent(MoviesEvent.Search("Inception"))
-        viewModel.getMovies("Inception")
-        println(viewModel.state.value.movies)
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // Kullanıcı arama sorgusunu gönderdiğinde bu metot çağrılır
+                if (query == null) {
+                    Toast.makeText(requireContext(),"Search Something!",Toast.LENGTH_LONG).show()
+                }
+                else{
+                    viewModel.getMoviesFromAPI(query,movieList,movieAdapter,requireActivity())
+                }
+                return true
+            }
 
-        println("-----------------------")
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Kullanıcı arama sorgusunu değiştirdiğinde bu metot çağrılır
 
-
-
-    }
-
-    private fun provideMovieApi(): MovieAPI{
-        return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(MovieAPI::class.java)
+                return true
+            }
+        })
     }
 
     override fun onItemClick(movieModel: Movie) {

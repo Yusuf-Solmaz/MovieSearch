@@ -9,4 +9,6 @@ import javax.inject.Inject
 class MovieDetailViewModel @Inject constructor(
     private val getMovieDetailsUseCase: GetMovieDetailUseCase
 ): ViewModel() {
+
+    
 }

@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.yusuf.moviesearch.R
 import com.yusuf.moviesearch.databinding.FragmentMovieDetailBinding
 import com.yusuf.moviesearch.databinding.FragmentMoviesBinding
 import com.yusuf.moviesearch.presentation.movie_detail.MovieDetailViewModel
+import com.yusuf.moviesearch.util.Constants.IMBD_ID
 
 class MovieDetailFragment : Fragment() {
 
@@ -37,6 +39,12 @@ class MovieDetailFragment : Fragment() {
 
         val binding = FragmentMovieDetailBinding.bind(view)
         fragmentBinding = binding
+
+        arguments?.let {
+            IMBD_ID = MovieDetailFragmentArgs.fromBundle(it).imdbId
+        }
+
+        Toast.makeText(view.context, IMBD_ID,Toast.LENGTH_LONG).show()
 
 
     }
