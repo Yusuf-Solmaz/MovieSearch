@@ -25,7 +25,7 @@ This project has been prepared for movie search and showing movie details. The d
 * [Dependency injection-Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
 * [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started)
 * [Coroutines](https://developer.android.com/kotlin/coroutines?hl=tr)
-* [Flow]([https://developer.android.com/topic/libraries/architecture/livedata](https://developer.android.com/kotlin/flow?hl=en))
+* [Flow]([https://developer.android.com/topic/libraries/architecture/livedata](https://developer.android.com/kotlin/flow?hl=en)
 * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel#implement)
 * [Repositories](https://developer.android.com/topic/architecture#data-layer)
 * [Extensions](https://developer.android.com/kotlin/ktx)
