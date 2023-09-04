@@ -39,10 +39,10 @@ class MovieRecyclerViewAdapter(private val movieList: MutableList<Movie>, listen
         }
 
         Glide.with(holder.itemView.context)
-            .load(movieList[position].Poster) // URL'yi yüklemek istediğiniz yer
-            .placeholder(R.drawable.img) // Resim yüklenene kadar gösterilecek yerel bir placeholder
-            .transition(DrawableTransitionOptions.withCrossFade()) // İyi bir geçiş efekti ekler
-            .into(holder.binding.recyclerViewRowImage) // Resmi göstermek istediğiniz ImageView
+            .load(movieList[position].Poster)
+            .placeholder(R.drawable.img)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(holder.binding.recyclerViewRowImage)
         holder.binding.MovieYear.text = movieList.get(position).Year
         holder.binding.movieName.text = movieList.get(position).Title
 

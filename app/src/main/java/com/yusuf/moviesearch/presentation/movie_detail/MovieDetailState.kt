@@ -1,6 +1,6 @@
 package com.yusuf.moviesearch.presentation.movie_detail
 
-import com.yusuf.moviesearch.domain.model.Movie
+
 import com.yusuf.moviesearch.domain.model.MovieDetail
 
 data class MovieDetailState (

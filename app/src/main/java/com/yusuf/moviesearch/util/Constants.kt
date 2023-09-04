@@ -6,9 +6,6 @@ object Constants {
 
     const val BASE_URL = "https://www.omdbapi.com/"
 
-    /*const val BASE_URL = "https://www.omdbapi.com/"
-    const val API_KEY = "f5133d7"*/
-
     const val IMBD_ID = "imdb_id"
 
 }

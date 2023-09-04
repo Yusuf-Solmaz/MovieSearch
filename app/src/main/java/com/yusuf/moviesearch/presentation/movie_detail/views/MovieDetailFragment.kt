@@ -1,4 +1,3 @@
-// MovieDetailFragment.kt
 
 package com.yusuf.moviesearch.presentation.movie_detail.views
 
@@ -14,8 +13,6 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.yusuf.moviesearch.R
 import com.yusuf.moviesearch.databinding.FragmentMovieDetailBinding
 import com.yusuf.moviesearch.presentation.movie_detail.MovieDetailViewModel
-import com.yusuf.moviesearch.util.Constants.IMBD_ID
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MovieDetailFragment : Fragment() {
@@ -56,8 +53,8 @@ class MovieDetailFragment : Fragment() {
                     binding.movieYear.text = movie.Year
                     Glide.with(requireContext())
                         .load(movie.Poster)
-                        .placeholder(R.drawable.img) // Resim yüklenene kadar gösterilecek yerel bir placeholder
-                        .transition(DrawableTransitionOptions.withCrossFade()) // İyi bir geçiş efekti ekler
+                        .placeholder(R.drawable.img)
+                        .transition(DrawableTransitionOptions.withCrossFade())
                         .into(binding.movieDetailsImageView)
                 }
             }

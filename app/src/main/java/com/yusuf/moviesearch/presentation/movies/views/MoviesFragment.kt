@@ -1,6 +1,5 @@
 package com.yusuf.moviesearch.presentation.movies.views
 
-import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.IOError
 import javax.inject.Inject
-import kotlinx.coroutines.Job
 
 class GetMovieUseCase @Inject constructor(
     private val repo: MovieRepository

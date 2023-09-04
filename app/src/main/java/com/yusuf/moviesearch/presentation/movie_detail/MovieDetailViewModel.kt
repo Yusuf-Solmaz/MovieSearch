@@ -1,4 +1,3 @@
-// MovieDetailViewModel.kt
 
 package com.yusuf.moviesearch.presentation.movie_detail
 
