@@ -2,10 +2,13 @@ This project has been prepared for movie search and showing movie details. The d
 
 
 
-| ------------- | ------------- | ------------- |
-| ![image](https://github.com/Yusuf-Solmaz/MovieSearch/assets/83172478/7e38a04a-2527-4ca4-b6e7-0d4b3727388d)  |
-![image](https://github.com/Yusuf-Solmaz/MovieSearch/assets/83172478/237b7ba6-5e43-4aa6-9e42-a081bfd5dbe0)  |
-![image](https://github.com/Yusuf-Solmaz/MovieSearch/assets/83172478/44f098ac-8efa-438b-b22a-b2d9b50124aa)  | 
+<table>
+  <tr>
+    <td><img src="https://github.com/Yusuf-Solmaz/MovieSearch/assets/83172478/7e38a04a-2527-4ca4-b6e7-0d4b3727388d" alt="Image 1"></td>
+    <td><img src="https://github.com/Yusuf-Solmaz/MovieSearch/assets/83172478/237b7ba6-5e43-4aa6-9e42-a081bfd5dbe0" alt="Image 2"></td>
+    <td><img src="https://github.com/Yusuf-Solmaz/MovieSearch/assets/83172478/44f098ac-8efa-438b-b22a-b2d9b50124aa" alt="Image 3"></td>
+  </tr>
+</table>
 
 
 
