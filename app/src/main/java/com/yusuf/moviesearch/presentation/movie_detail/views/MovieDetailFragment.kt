@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.yusuf.moviesearch.R
 import com.yusuf.moviesearch.databinding.FragmentMovieDetailBinding
 import com.yusuf.moviesearch.databinding.FragmentMoviesBinding
+import com.yusuf.moviesearch.domain.model.MovieDetail
 import com.yusuf.moviesearch.presentation.movie_detail.MovieDetailViewModel
 import com.yusuf.moviesearch.util.Constants.IMBD_ID
 
@@ -44,7 +45,11 @@ class MovieDetailFragment : Fragment() {
             IMBD_ID = MovieDetailFragmentArgs.fromBundle(it).imdbId
         }
 
+        val movieDetail =viewModel.state.value.movie
+
         Toast.makeText(view.context, IMBD_ID,Toast.LENGTH_LONG).show()
+
+        println("\n$movieDetail")
 
 
     }

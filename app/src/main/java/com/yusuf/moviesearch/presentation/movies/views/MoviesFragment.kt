@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yusuf.moviesearch.R
 import com.yusuf.moviesearch.data.remote.MovieAPI
@@ -24,9 +25,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
+import kotlinx.coroutines.flow.collect
+
 
 
 class MoviesFragment() : Fragment(R.layout.fragment_movies), MovieRecyclerViewAdapter.Listener {
@@ -88,6 +88,8 @@ class MoviesFragment() : Fragment(R.layout.fragment_movies), MovieRecyclerViewAd
                 return true
             }
         })
+
+
     }
 
     override fun onItemClick(movieModel: Movie) {
