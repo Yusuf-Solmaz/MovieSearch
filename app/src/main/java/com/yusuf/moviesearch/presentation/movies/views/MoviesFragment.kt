@@ -1,39 +1,33 @@
 package com.yusuf.moviesearch.presentation.movies.views
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.yusuf.moviesearch.R
-import com.yusuf.moviesearch.data.remote.MovieAPI
-import com.yusuf.moviesearch.data.remote.dto.toMovieList
-import com.yusuf.moviesearch.data.repository.MovieRepositoryImp
 import com.yusuf.moviesearch.databinding.FragmentMoviesBinding
 import com.yusuf.moviesearch.domain.model.Movie
-import com.yusuf.moviesearch.domain.repository.MovieRepository
+import com.yusuf.moviesearch.presentation.movies.MoviesEvent
 import com.yusuf.moviesearch.presentation.movies.MoviesViewModel
 import com.yusuf.moviesearch.presentation.movies.adapter.MovieRecyclerViewAdapter
-import com.yusuf.moviesearch.util.Constants
-import com.yusuf.moviesearch.util.Constants.API_KEY
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.flow.collect
-
 
 
 class MoviesFragment() : Fragment(R.layout.fragment_movies), MovieRecyclerViewAdapter.Listener {
 
     private var fragmentBinding: FragmentMoviesBinding? = null
     private lateinit var viewModel: MoviesViewModel
-    private var movieList= arrayListOf<Movie>()
+    private lateinit var movieList: MutableList<Movie>
 
 
     private var movieAdapter = MovieRecyclerViewAdapter(arrayListOf(),this)
@@ -50,7 +44,7 @@ class MoviesFragment() : Fragment(R.layout.fragment_movies), MovieRecyclerViewAd
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_movies, container, false)
     }
 
@@ -65,8 +59,9 @@ class MoviesFragment() : Fragment(R.layout.fragment_movies), MovieRecyclerViewAd
         val layoutManager = LinearLayoutManager(requireContext())
         binding.moviesRecyclerView.layoutManager = layoutManager
 
+        movieList = mutableListOf()
 
-        movieAdapter = MovieRecyclerViewAdapter(movieList ?: arrayListOf(),this@MoviesFragment)
+        movieAdapter = MovieRecyclerViewAdapter(movieList,this@MoviesFragment)
         binding.moviesRecyclerView.adapter=movieAdapter
 
 
@@ -77,8 +72,32 @@ class MoviesFragment() : Fragment(R.layout.fragment_movies), MovieRecyclerViewAd
                     Toast.makeText(requireContext(),"Search Something!",Toast.LENGTH_LONG).show()
                 }
                 else{
-                    viewModel.getMoviesFromAPI(query,movieList,movieAdapter,requireActivity())
+
+                    viewModel.onEvent(MoviesEvent.Search(query))
+                    val state = viewModel.state
+
+
+                    lifecycleScope.launch{
+                        state.collect(){
+                            val newMovieList = it.movies
+
+                            if (newMovieList.isNotEmpty()){
+                            binding.moviesRecyclerView.visibility=RecyclerView.VISIBLE
+                            binding.textView.visibility=TextView.GONE
+                            movieList.clear()
+                            movieList.addAll(newMovieList)
+                            movieAdapter.updateData(newMovieList)
+                            }
+                            else{
+                                binding.moviesRecyclerView.visibility=RecyclerView.GONE
+                                binding.textView.visibility=TextView.VISIBLE
+
+                            }
+                        }
+                    }
+
                 }
+
                 return true
             }
 
@@ -88,12 +107,10 @@ class MoviesFragment() : Fragment(R.layout.fragment_movies), MovieRecyclerViewAd
                 return true
             }
         })
-
-
     }
 
     override fun onItemClick(movieModel: Movie) {
-        Toast.makeText(requireContext(),"Clicked on: ${movieModel.Title}",Toast.LENGTH_LONG).show()
+        //Toast.makeText(requireContext(),"Clicked on: ${movieModel.Title}",Toast.LENGTH_LONG).show()
     }
 
 }
