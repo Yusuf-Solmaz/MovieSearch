@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.movie_detail.views.MovieDetailFragment"
-    android:background="@color/black"
+    android:background="#1A073A"
     android:orientation="vertical">
 
 
@@ -14,8 +14,8 @@
         android:layout_marginTop="130dp"
         android:layout_gravity="center"
         android:id="@+id/movieDetailsImageView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
         tools:layout_editor_absoluteX="141dp"
         tools:layout_editor_absoluteY="78dp"
         tools:src="@tools:sample/avatars" />
