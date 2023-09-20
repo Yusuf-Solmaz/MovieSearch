@@ -66,6 +66,7 @@ class MoviesViewModel @Inject constructor(
             is MoviesEvent.Search ->{
                 getMovies(event.search)
             }
+
         }
     }
 
