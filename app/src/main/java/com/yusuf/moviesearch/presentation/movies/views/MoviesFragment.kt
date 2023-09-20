@@ -72,7 +72,7 @@ class MoviesFragment() : Fragment(R.layout.fragment_movies), MovieRecyclerViewAd
                 }
                 else{
 
-                   //viewModel.onEvent(MoviesEvent.Search(query))
+                   viewModel.onEvent(MoviesEvent.Search(query))
                     //viewModel.getMovies(query)
                     val state = viewModel.state
 
